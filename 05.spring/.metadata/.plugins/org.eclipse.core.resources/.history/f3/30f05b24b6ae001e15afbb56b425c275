@@ -1,0 +1,79 @@
+package com.spring.mvc;
+
+import javax.print.attribute.standard.Media;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import user.dto.User;
+
+@Controller
+public class MVCController {
+	
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	public void test1 () {
+		System.out.println("MVCController : test1");
+	}
+	
+	@RequestMapping(value ="/test2", method = RequestMethod.GET)
+	public void test2 (HttpServletRequest request) {
+		System.out.println("MVCController : test2");
+		String id = request.getParameter("id");
+		System.out.println(id);
+	}
+	@RequestMapping(value =  "/test3", method = RequestMethod.GET)
+	public void test3 (@RequestParam String id) {
+		System.out.println("MVCController : test3");
+		System.out.println(id);
+	}
+	
+	// /test4?id=dev&age=28 ---> User 객체생성?
+	
+	@RequestMapping(value =  "/test4", method = RequestMethod.GET)
+	public void test4 (@RequestParam String id,@RequestParam Integer age) {
+		
+		// User객체
+		User user = new User().builder()
+								.id(id)
+								.age(age)
+								.build();
+		System.out.println(user);
+	}
+	@RequestMapping(value = "/test5", method =RequestMethod.POST)
+	// /test5?id=dev&age=28 ---> User 객체생성?
+	// @ModelAttribute : get -> params --> O
+	//				   : get -> body (form-data, urlencoded) --> X
+	//				   : post -> body (form-data) --> X
+	//				   : post -> body (urlencoded) --> O
+	public void test5(@ModelAttribute User user) {
+		System.out.println("MVCController : test5");
+		System.out.println(user);
+	}
+	
+	// http://localhost:8080/mvc/test6
+	@RequestMapping(value =  "/test6", consumes = {MediaType.APPLICATION_JSON_VALUE},method = RequestMethod.POST)
+	public void test6 (@RequestBody User user) {
+		System.out.println("MVCController : test6");
+		System.out.println(user);
+	}
+	
+	// http://localhost:8080/mvc/test7/dept/10
+	@RequestMapping(value = "/test7/dept/{deptno}", method =RequestMethod.GET)
+	public void test7(@PathVariable int deptno) {
+		System.out.println("MVCController : test7");
+		System.out.println(deptno);
+	}
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,21 @@
+package run.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import step01.domain.Car;
+import step01.domain.People;
+
+public class Step01Test {
+	public static void main(String[] args) {
+		// step01.xml 등록된 bean 불러오기
+		ApplicationContext context = new ClassPathXmlApplicationContext("step01.xml");
+		
+//		Car c1 = context.getBean("c1", Car.class);
+//		System.out.println(c1);
+		
+		People p1 = context.getBean("p1" ,People.class);
+		System.out.println(p1);
+		
+	}
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="step01_DI"/>
+<aop-project name="step00_intro"/>
+<aop-project name="step02_mvc"/>
+</aop-reference-model>

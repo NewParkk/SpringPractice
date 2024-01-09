@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+C:\multi\05.spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\873709355.index
+\step01_DI\src\main\java
+C:\multi\05.spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1988353058.index
+\step02_mvc\src\main\java
+C:\multi\05.spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\398455729.index
+\step00_intro\src\main\java

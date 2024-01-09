@@ -1,0 +1,16 @@
+package run.test;
+
+import step01.domain.Car;
+import step01.domain.People;
+
+public class Step01Test {
+	public static void main(String[] args) {
+		
+		
+		Car car1 = new Car();
+		
+		People ppl1 = new People("ppl1", 28, car1);
+		
+		
+	}
+}

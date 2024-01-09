@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="c1" class="step01.domain.Car">
+		<constructor-arg name="carNo" value="1" />
+		<constructor-arg name="carName" value="genesis" />
+	</bean>
+	<bean id="ppl1" class="step01.domain.People">
+		<property name="name" value="Dev" />
+		<property name="age" value="28" />
+		<property name="car" ref="참조bean 고유값" />
+	</bean>
+	
+</beans>
