@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.mapper.DeptMapper">
+	
+	<!-- SELECT * FROM dept; -->
+	<select id="getDeptList" resultType="com.spring.dto.Dept">
+		SELECT * FROM dept
+	</select>
+	
+	<!-- SELECT * FROM dept WHERE dpetno = ? -->
+	<select id="getDeptByDeptno"
+			parameterType="_int"
+			resultType="com.spring.dto.Dept">
+		SELECT *
+		FROM dept
+		WHERE deptno = #{deptno}
+	</select>
+	
+	<!-- SELECT dname FROM dept WHERE dpetno = ? -->
+	<select id="getDnameByDeptno"
+			parameterType="_int"
+			resultType="string">
+		SELECT dname
+		FROM dept
+		WHERE deptno = #{deptno}
+	</select>
+	
+	<!-- parameter 여러개 사용시 선언없이 -->
+	<select id="getDnameByDeptnoAndLoc"
+			resultType="string">
+		SELECT dname
+		FROM dept
+		WHERE deptno= #{deptno} AND loc= #{loc}
+	</select>
+	
+	<select id="getDnameByDeptnoAndLocUsingMap"
+			parameterType="map"
+			resultType="string">
+		SELECT dname
+		FROM dept
+		WHERE deptno= #{deptno} AND loc= #{loc}
+	</select>
+	
+	<!-- v1 -->
+	<!-- v2 : dname, loc 값만 출력 -> resultMap -->
+	<select id="getDeptListMap"
+			resultMap="printDnameAndLoc">
+		SELECT dname, loc FROM dept
+	</select>
+	
+	<!-- resultMap : type(java 객체 타입), id(별칭) -->
+	<resultMap type="java.util.HashMap" id="printDnameAndLoc">
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc"/>
+	</resultMap>
+	<!--
+	- 위에서 type을 dto패키지로 선언시 null 포함된 Dept 객체 반환  
+	<resultMap type="com.spring.dto.Dept" id="printDnameAndLoc">
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc"/>
+	-->
+	
+	
+	<select id="getDeptEmpMap"
+			parameterType="_int"
+			resultType="hashmap">
+		SELECT e.empno, e.ename, e.hiredate, d.dname, d.loc
+		FROM dept d, emp e
+		WHERE e.empno = #{empno} AND d.deptno = e.deptno 
+		
+	</select>
+	
+	<insert id="insertDept"
+			parameterType="com.spring.dto.Dept">
+		INSERT INTO dept VALUES(#{deptno}, #{dname}, #{loc});
+	</insert>
+	<update id="updateLoc"
+			parameterType="com.spring.dto.Dept">
+		UPDATE dept SET loc = #{loc}
+		WHERE deptno=#{deptno} 
+	</update>
+	
+	<delete id="deleteLoc"
+			parameterType="com.spring.dto.Dept">
+		DELETE FROM dept
+		WHERE deptno= #{deptno}
+	</delete>
+	
+	<select id="getEmpBydeptno"
+			parameterType="_int"
+			resultType="com.spring.dto.Emp">
+		SELECT *
+		FROM emp	
+		WHERE deptno = #{deptno}
+	</select>
+	
+	
+	
+</mapper>
