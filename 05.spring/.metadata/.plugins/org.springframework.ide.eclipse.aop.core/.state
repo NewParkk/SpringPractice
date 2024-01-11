@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="step01_DI"/>
-<aop-project name="step00_intro"/>
+<aop-project name="MyCompany_t"/>
+<aop-project name="step03_mybatis"/>
 <aop-project name="step02_mvc"/>
+<aop-project name="step00_intro"/>
 </aop-reference-model>

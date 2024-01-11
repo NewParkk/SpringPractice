@@ -27,10 +27,9 @@ public class MainController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
 		
-		List<Dept> deptList;
-		deptList = service.getAllDeptList();
+		List<Dept> deptList = service.getAllDeptList();
 		model.addAttribute("deptList", deptList);
-		System.out.println(deptList);
+//		System.out.println(deptList);
 		return "main";
 	}
 

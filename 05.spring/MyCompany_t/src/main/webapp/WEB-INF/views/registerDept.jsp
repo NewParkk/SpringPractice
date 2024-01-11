@@ -6,7 +6,7 @@
 <title>Dept Insertion</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/css/layout.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/layout.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 </head>
 <body>

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Error</title>
-<link href="/css/layout.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/layout.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 	<br><hr><br>
 	
 	<div align="center">
-		<h3>??</h3>
+		<h3>${exception.getmessage}</h3>
 	</div>
 	 
 	<br>

@@ -4,8 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.company.mapper.DeptMapper">
-	<select id="getAllDeptList" resultType="com.company.dto.Dept">
-			SELECT * FROM dept
+	<select id="getAllDeptList" 
+			resultType="com.company.dto.Dept">
+		SELECT * 
+		FROM dept
 	</select>
 	 
 	<select id="getDeptByDeptno"
@@ -17,16 +19,24 @@
 	</select>
 	 
 	 
-	<!--  	<insert>
-	 		
-	 	</insert> -->
+	<insert id="insertDept"
+			parameterType="com.company.dto.Dept">
+		INSERT INTO dept
+		VALUES (#{deptno}, #{dname}, #{loc})	
+	</insert>
 	 	
-	<!--  	<update>
-	 		
-	 	</update> -->
+	<update id="updateDnameAndLoc"
+			parameterType="com.company.dto.Dept">
+		UPDATE dept
+		SET dname = #{dname} ,
+			loc = #{loc}
+		WHERE deptno = #{deptno} 		
+	</update>
 	 	
-	<!--  	<delete>
-	 		
-	 	</delete> -->
+	<delete id="deleteDeptByDeptno"
+			parameterType="_int">
+	 	DELETE FROM dept
+	 	WHERE deptno = #{deptno}	
+	</delete>
  	
  </mapper>

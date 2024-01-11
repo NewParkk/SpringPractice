@@ -7,14 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Dept Update</title>
-<link href="/css/layout.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/layout.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <%@ include file="header.jsp" %>
 
 <!-- action, method -->
-<form action="/dept/부서번호" method="POST">
+<form action="/dept/${dept.deptno}" method="POST">
+	<!-- PUT -->
+	<input type="hidden" name="_method" value="PUT">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
@@ -33,7 +35,7 @@
 	        	<b>
 	        		<span style="font-size:9pt;">
 	        			<!-- 부서번호는 수정되지 않도록 지정 -->
-	        			<input type="text" name="deptno" size="30" value="" readonly disabled>
+	        			<input type="text" name="deptno" size="30" value="${dept.deptno}" readonly disabled>
 	        		</span>
 	        	</b>
 	        </td>
@@ -46,7 +48,7 @@
 	        	<b>
 	        		<span style="font-size:9pt;">
 	        			<!-- 부서명 출력 -->
-	        			<input type=text name="dname" size="30" value="">
+	        			<input type=text name="dname" size="30" value="${dept.dname}">
 	        		</span>
 	        	</b>
 	        </td>
@@ -59,7 +61,7 @@
 	        	<b>
 	        		<span style="font-size:9pt;">
 	        			<!-- 부서위치 출력 -->
-	        			<input type=text name="loc" size="30" value="">
+	        			<input type=text name="loc" size="30" value="${dept.loc}">
 	        		</span>
 	        	</b>
 	        </td>

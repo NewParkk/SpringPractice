@@ -26,15 +26,29 @@ public class DeptService {
 	}
 	
 	// insert - Dept
-	public boolean insertDept(Dept dept) throws SQLException, Exception {
+	public boolean insertDept(Dept dept) throws SQLException {
 		boolean result = false;
 		
+		int res = mapper.insertDept(dept);
+		
+		if (res != 0) {
+			result = true;
+		}else {
+			new Exception("부서 생성 실패");
+		}
 		return result;
 	}
 	
 	// update-dept
 	public boolean updateDnameAndLoc(Dept dept) throws SQLException, Exception {
 		boolean result = false;
+		int res = mapper.updateDnameAndLoc(dept);
+		
+		if (res != 0) {
+			result = true;
+		}else {
+			new Exception("부서 수정 실패");
+		}
 		
 		return result;
 	}
@@ -42,7 +56,13 @@ public class DeptService {
 	// delete - dept
 	public boolean deleteDeptByDeptno(int deptno) throws SQLException, Exception {
 		boolean result = false;
+		int res = mapper.deleteDeptByDeptno(deptno);
 		
+		if (res != 0) {
+			result = true;
+		}else {
+			new Exception("부서 삭제 실패");
+		}
 		return result;
 	}
 

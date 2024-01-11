@@ -14,7 +14,7 @@
 <%@ include file="header.jsp" %>
 
 <!-- action, method -->
-<form action="/modify/dept/부서번호" method="GET" name="detailForm" id="detailForm">
+<form action="/modify/dept/${dept.deptno}" method="GET" name="detailForm" id="detailForm">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
@@ -92,10 +92,26 @@
 	
 	function deleteDept(){
 	  // ???	  
+	  let detailForm = document.getElementById('detailForm');
+	  let deptno = document.getElementById('deptno').innerHTML;
+	  
+	  
 	  // type:hidden, 
 	  // name:_method, 
 	  // value:'DELETE' 값을 가지는 input 태그 내부에서 생성!
-  	  
+	  let hiddenInput = document.createElement('input');
+	  hiddenInput.type = 'hidden';
+	  hiddenInput.name = '_method';
+	  hiddenInput.value = 'DELETE';
+	  
+	  detailForm.appendChild(hiddenInput);
+	  
+	  console.log(detailForm);
+	  	
+	  detailForm.action = "/dept/" + deptno;
+	  detailForm.method = "POST";
+	  detailForm.submit();
+	  
 	}
 </script>
 </body>
