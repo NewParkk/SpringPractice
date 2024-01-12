@@ -1,0 +1,66 @@
+1. 인터셉터(Interceptor)
+	* https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html
+	* https://justforchangesake.files.wordpress.com/2014/05/spring-request-lifecycle.jpg
+	
+	- controller 도달 전, 요청 HttpRequest과 응답 HttpResponse을 가로채는 역할
+	- 세션 관리,인증 등의 역할을 수행
+	
+	- 구현
+		- HandlerInterceptor 인터페이스 
+		- HandlerInterceptorAdapter 추상클래스(deprecated : 사용권장x)
+		
+	- 메소드
+		- preHandle Method
+			- 컨트롤러가 호출되기 전 실행 메소드
+			- 요청 데이터 전처리,가공
+		- postHandle Method
+			- 컨트롤러가 호출된 후 실행 메소드
+			- 후처리 작업
+		- afterCompletion Method
+			- 뷰 생성을 포함한 모든 작업이 완료 후 실행 메소드
+		
+		
+	- xml 설정(어느 xml에서 설정해야 할까? hint : interceptor의 실행 위치)
+	<interceptors>
+		<interceptor>
+			<mapping path=""/> 				: 인터셉터 실행 url 
+			<exclude-mapping path=""/>  	: 인터셉터 실행 제외 url
+			<beans:bean	id="" class=""/>	: 인터셉터 bean 등록할 class 지정
+		</interceptor>
+	</interceptors>
+	
+	
+	- Filter VS Interceptor
+		1. 관리대상 및 실행 시점
+			- filter : Web Container, servlet 요청 전
+			- interceptor : Spring Container, servlet 이후 controller 실행 전/후
+			
+		2. request, response 객체 조작 가능
+			- filter : 가능
+			- interceptor : 불가능
+		
+		* 실제 사용
+			- Filter
+				- 보안 관련 공통 작업
+				- 모든 요청에 대한 로깅 또는 감사
+				- 이미지/데이터 압축 및 문자열 인코딩
+				- 예시
+				  <filter>
+				  	<filter-name>encodingFilter</filter-name>
+				  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+				  	<init-param>
+				  		<param-name>encoding</param-name>
+				  		<param-value>UTF-8</param-value>
+				  	</init-param>
+				  </filter>
+				  <filter-mapping>
+				  	<filter-name>encodingFilter</filter-name>
+				  	<url-pattern>/*</url-pattern>
+				  </filter-mapping>
+				
+			- Interceptor
+				- 인증/인가 등과 같은 공통 작업(ex. 관리자, 일반 사용자)
+				- Controller로 넘겨주는 정보의 가공
+				- API 호출에 대한 로깅 또는 감사
+				- 실습
+					MyCompany에 Interceptor 적용

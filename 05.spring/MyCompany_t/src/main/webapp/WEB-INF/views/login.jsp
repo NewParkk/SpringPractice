@@ -6,7 +6,7 @@
 <title>Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/css/layout.css" rel="stylesheet" type="text/css"> 
+<link href="/resources/css/layout.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -78,16 +78,6 @@
 <script type="text/javascript">
 const inputEmpno = document.getElementById('empno');
 const empnoMsg = document.getElementById('empnoMsg');
-	
-inputEmpno.addEventListener('blur', () => {
-	axios.get('http://localhost:8082/api/emp/'+inputEmpno.value)
-		.then(response => {
-			empnoMsg.innerHTML = '존재하는 회원입니다. 로그인을 진행해주세요.';
-		})
-		.catch(error => {
-			empnoMsg.innerHTML = error.response.data;
-		})
-});
 </script>
 
 </body>

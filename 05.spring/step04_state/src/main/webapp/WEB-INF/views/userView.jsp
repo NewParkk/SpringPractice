@@ -10,10 +10,12 @@
 </h1>
 
 <!-- user 출력 -->
+ename : ${user.ename} <br/>
+level : ${user.level} <br/>
 <hr>
 
-id : ${user.id} <br/>
-age : ${user.age} <br/>
+session-ename : ${sessionScope.user.ename} <br/>
+session-level : ${sessionScope.user.level} <br/>
 <hr>
 <a href="/user-delete">user 삭제</a>
 </body>

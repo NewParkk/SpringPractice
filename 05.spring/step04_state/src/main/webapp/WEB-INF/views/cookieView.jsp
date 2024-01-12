@@ -13,6 +13,8 @@
 
 <hr>
 <!-- 그냥 cookie출력시 tomcat에서 자동생성된 쿠키와 내가만든 쿠키 2가지 -->
-${cookie.id} - ${cookie.id.name} - ${cookie.id.value} 
+${cookie.id} - ${cookie.id.name} - ${cookie.id.value}
+<hr>
+<a href="/cookie-delete">Cookie-Delete</a> 
 </body>
 </html>

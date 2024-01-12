@@ -1,0 +1,98 @@
+File Upload/Download
+	- 클라이언트가 서버로 파일데이터를 전송하여 서버에 저장하거나, 저장된 파일을 클라이언트의 환경으로 저장하는 과정
+	- 기본 규칙
+		- <input type="file" > 
+		- <form> POST 
+		- <form> 태그 enctype=multipart/form-data 지정
+		
+	- Multipart
+		- 요청 헤더 content-type의 한 종류
+		- form 내부에서 서버로 전송하는 데이터 타입이 다양한 경우 사용
+		- 웹 클라이언트가 요청을 보낼 때, HTTP 요청의 바디를 나눠서 보내는 방식
+	
+	- Settings
+		- 1. dependencies
+			- commons-io
+				https://mvnrepository.com/artifact/commons-io/commons-io/2.11.0
+			- commons-fileupload
+				https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.5
+				
+		- 2. MultipartResolver
+			- request의 body 정보를 inputStream으로 읽을 때 효율성 증대 객체 
+			- bean으로 등록 후 사용 가능
+				*org.springframework.web.multipart.commons.CommonsMultipartResolver
+				
+				 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+				 	<beans:property name="maxUploadSize" value="104857600"/>
+			 		<beans:property name="maxUploadSizePerFile" value="104857600"/>
+			 		<beans:property name="maxInMemorySize" value="104857600"/>
+				 </beans:bean>
+			
+			- property
+				- maxUploadSize 
+				: 요청당 업로드 허용 최대 용량을 byte
+				  -1 은 제한이 없음, 기본값
+			
+			- maxUploadSizePerFile
+			 	: 파일당 업로드 허용 최대 용량 byte
+				  -1 은 제한이 없음, 기본값
+				
+			- maxInMemorySize 
+				: 디스크에 저장하지 않고 메모리 유지 바이트
+				    사이즈가 클 경우, 이상의 데이터는 파일 저장, 기본값 10240 bytes
+	
+2. Practice Flow
+	[source]
+		- fileTest.jsp
+	
+			<%@ page language="java" contentType="text/html; charset=UTF-8"
+			    pageEncoding="UTF-8"%>
+			<!DOCTYPE html>
+			<html>
+			<head>
+			<meta charset="UTF-8">
+			<title>File Upload/Download</title>
+			</head>
+			<body>
+				<h1>File</h1>
+				<form action="" method="">
+					<input type="file" name="file"><br />
+					<input type="" value="업로드">
+				</form>
+				<hr />
+				<a href="" >File Download</a>
+			</body>
+			</html>	
+			
+		- FileController
+		
+			@Controller
+			public class FileController {
+				
+				@RequestMapping(value = "/file-test", method = RequestMethod.GET)
+				public String fileTestView() {
+					return "fileTest";
+				}
+				
+				@PostMapping(value = "/file-upload")
+				public void uploadFile() {
+					// 파일 정보
+					// 파일 저장 위치 설정 : savePath - C:\multi\00.spring
+					
+				}
+				
+				@GetMapping(value = "/file-download")
+				public ResponseEntity<Resource> downloadFile(){
+					// 지정 경로의 특정 파일 선택 -> resource로 변경 -> Http Header 컨텐츠의 타입 지정 후 전달 
+					// data, headers, status
+					return new ResponseEntity<Resource>(null, null, null);
+				}
+			}
+
+	1. Upload
+		1) 파일 선택후 업로드 클릭하여 서버로 데이터 전송
+		2) 전송 파일 저장 확인
+
+	2. Download
+		1) File Download 링크 클릭
+		2) 다운로드 파일 확인

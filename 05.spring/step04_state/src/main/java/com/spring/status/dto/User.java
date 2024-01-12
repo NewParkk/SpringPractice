@@ -12,6 +12,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class User {
-	private String id;
-	private int age;
+	private String ename;
+	private int level;
 }

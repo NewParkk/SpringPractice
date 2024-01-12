@@ -30,11 +30,14 @@
 (세션) 생성)링크 클릭 -> / session-test1 -> sessionView.jsp
 <hr>
 
-<a href="/session-test2?id=dev&age=25">3. Session-Test</a> 
+<a href="/session-test2?ename=dev&level=25">3. Session-Test</a> 
 [3.session]
-(세션 생성)링크 클릭 -> /session-test2?id=dev&age=25
+(세션 생성)링크 클릭 -> /session-test2?ename=dev&level=25
 ->
 @ModelAttribute - User => model 저장후
--> userView.jsp
+->
+userView.jsp
+
+<hr>
 </body>
 </html>

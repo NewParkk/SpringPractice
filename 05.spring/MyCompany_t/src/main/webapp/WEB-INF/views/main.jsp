@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@
 
 <%@ include file="header.jsp" %>
 
-<c:if test="${true}">    
+<c:if test="${not empty sessionScope.userId}">
 <table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<tr>
         <td bgcolor="#336699">
@@ -30,8 +29,8 @@
         </td>
     </tr>
 
-	<!-- 부서 객체 유무 검증 ?? -->
-	<c:if test="${empty deptList}">    
+	<!-- 부서 객체 유무 검증 -->
+	<c:if test="${empty requestScope.deptList}">    
 		<tr>
 	        <td colspan="5">
 	            <p align="center"><b><span style="font-size:12pt;">등록된 부서가 존재하지 않습니다.</span></b></p>
@@ -39,7 +38,7 @@
 	    </tr>
 	</c:if>
 	<!-- 반복 출력 -->
-	<c:forEach items= "${deptList}" var="dept">
+	<c:forEach items="${requestScope.deptList}" var="dept">
 		    <tr>
 		        <td bgcolor="">
 		            <p align="center">
@@ -79,6 +78,12 @@
 	<!-- 부서생성 클릭 시, 새로운 부서 정보 입력 페이지로 이동 -->
 	<span style="font-size:12pt;"><input type="button" value="부서생성" onclick="location.href='/dept'"></span>
 </div>
+</c:if>
+
+<c:if test="${empty sessionScope.userId}">
+	<div align="center">
+  		<span style="font-size:12pt;">로그인이 필요한 서비스입니다.</span>
+	</div>
 </c:if>
 
 <%@ include file="footer.jsp" %>

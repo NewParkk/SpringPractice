@@ -1,5 +1,10 @@
 package com.spring.state;
 
+import java.util.Arrays;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.spring.status.dto.User;
 
 @Controller
-@SessionAttributes(value = {"grade"})
+@SessionAttributes(value = {"grade", "user"})
 public class StateController {
 
 	@GetMapping(value = "/cookie-test")
@@ -35,6 +40,35 @@ public class StateController {
 		return "sessionView";
 	}
 	
+	@GetMapping(value = "/cookie-delete")
+	public String cookieDelete(HttpServletRequest request, HttpServletResponse response) {
+		// 쿠키 삭제 : 1)같은 name, null -> 2) setMaxAge(0) -> 3) response에 담아 사용
+		
+		Cookie[] cookies = request.getCookies();
+		// v1
+//		
+//		for(Cookie cookie : cookies) {
+//			if ("id".equals(cookie.getName())) {
+//				cookie.setValue(null);
+//				cookie.setMaxAge(0);
+//				response.addCookie(cookie);
+//			}
+//		}
+		
+		// v2
+		// stream -> filter 조건 -> 조건 부합<Optional>Cookie 반환-> 존재여부 확인 : 존재 - cookie
+		Cookie cookie = Arrays.stream(cookies)
+								.filter(c -> "id".equals(c.getName()))
+								.findFirst()
+								.orElse(null);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		
+		return "cookieView";
+	}
+	
+	
+	
 	@GetMapping(value = "/grade-delete")
 	public String sessiondelete(SessionStatus status) {
 		
@@ -54,7 +88,7 @@ public class StateController {
 	
 	
 	@GetMapping(value = "/session-test2")
-	public String sessionTest2(@ModelAttribute User user, Model model) {
+	public String sessionTest2(User user, Model model) {
 		model.addAttribute("user", user);
 		System.out.println(user);
 		return "userView";
@@ -66,6 +100,8 @@ public class StateController {
 		
 		return "userView";
 	}
+	
+	
 	
 	
 }

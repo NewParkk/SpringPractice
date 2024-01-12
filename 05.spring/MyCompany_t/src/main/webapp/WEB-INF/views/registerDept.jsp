@@ -6,7 +6,7 @@
 <title>Dept Insertion</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/resources/css/layout.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/layout.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
 </head>
 <body>
@@ -89,20 +89,9 @@
 <%@ include file="footer.jsp" %>
 
 <script type="text/javascript">
-	/* 시나리오
-		1) deptno를 입력하는 input태그에 addEventListener('blur', () => {})
-		2) blur(unfocus)가 되면 axios 비동기 요청을 서버(http://localhost:8082/api/dept/{deptno}로 보냄
-		3) deptno를 @PathVariable로 받아서 -> 해당 부서 유무 확인 
-										-> 해당 부서가 존재한다면! : '이미 존재하는 부서번호 입니다.'예외 메세지 출력
-										-> 해당 부서가 존재X않는다면 !: '사용가능한 부서번호입니다.' 결과 메세지 출력
-	*/
 	const inputDeptno = document.getElementById('deptno');
 	const deptnoMsg = document.getElementById('deptnoMsg');
 		
-	inputDeptno.addEventListener('blur', () => {
-		
-	});
-
 </script>
 </body>
 </html>

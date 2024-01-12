@@ -1,0 +1,45 @@
+1. Cookie
+	- 클라이언트의 브라우저에 저장되는 정보
+	- 해당 정보는 request마다 서버로 전송
+	- 서버에서는 해당 cookie를 통해 클라이언트의 기존 상태를 확인, 유지 및 활용 가능
+	
+	[spring 추가내용]
+	- @CookieValue("key", required = false/true)
+		- request에서 해당 key에 맞는 쿠키를 매핑하여 리턴하는 기능
+	 	- required : true - 해당 쿠키 미존재시 exception 발생
+	 	
+	- 쿠키 삭제
+		* setMaxAge(0)으로 지정시 쿠키 삭제 가능
+		
+2. Session
+	- 서버에서 관리하는 클라이언트의 요청 정보
+	- 어플리케이션에서 유지해야하는 정보를 관리하기 위한 기술
+	
+	[spring 추가내용]
+	- 세션의 필요성
+		- 수정 기능의 경우 수정에 필요한 일부 데이터만 출력하고 일부 데이터만 서버로 전달
+		- 일부 정보는 null/0으로 전달되고, 이를 방지하기 위해 객체를 DB로부터 찾거나
+		  input type="hidden"으로 데이터를 넘겨주어 해결 가능
+		- DB에 부담 및 보안상의 문제 발생
+		=> 세션을 활용하여 객체의 상태를 유지 가능
+	
+	- @SessionAttributes({"key", ...})
+		- 컨트롤러 단위에서 세션을 저장하고 관리하는 기능
+		- 기본적으로 HttpSession을 활용
+		
+		- 특징
+			- Model 객체를 통해 동일한 "key"로 저장시 session에 자동으로 등록
+				-> sessionScope로 객체 정보 출력 가능
+			*** 주의
+				@ModelAttribute와 함께 사용하는 경우 기존 세션의 객체가 존재해야만 
+				해당 어노테이션의 객체에 매핑이 가능(존재하지 않는경우 exception 발생)
+			
+	- SessionStatus
+		- session의 상태를 다루기 위한 타입
+		- 메소드
+			- isComplete()  : 세션 객체 무효화 확인 기능 
+			- setComplete() : 세션 객체 무효화 기능
+		
+		
+	- @SessionAttribute("key", required = false)
+  	- 기존 세션 객체가 존재하는 경우 자동으로 매핑하는 기능
