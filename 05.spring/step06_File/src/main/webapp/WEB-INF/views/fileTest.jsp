@@ -13,6 +13,6 @@
 		<input type="submit" value="업로드">
 	</form>
 	<hr />
-	<a href="" >File Download</a>
+	<a href="/file-download" >File Download</a>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <%@ include file="header.jsp" %>
 
 <!-- action, method -->
-<form action="/dept" method="POST">
+<form action="/dept" method="POST" enctype="multipart/form-data">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
 	    <tr>
 	        <td width="1220" height="20" colspan="2" bgcolor="#336699">
@@ -61,6 +61,19 @@
 	        		<span style="font-size:12pt;">
 	        			<!-- input 박스 -->
 	        			<input type="text" name="loc" size="30">
+	        		</span>
+	        	</b>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:12pt;">부서파일</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span style="font-size:12pt;">
+	        			<!-- input 박스 -->
+	        			<input type="file" name="file" size="30">
 	        		</span>
 	        	</b>
 	        </td>

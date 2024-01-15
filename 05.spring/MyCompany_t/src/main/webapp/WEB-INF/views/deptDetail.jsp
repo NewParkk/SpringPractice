@@ -63,6 +63,18 @@
 	    </tr>
 	    <tr>
 	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:12pt;">부서파일</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span style="font-size:12pt;">
+	        			<a href="http://localhost:8080/download/file/${file.attachmentFileNo}">${file.attachmentOriginalFileName}</a>
+	        		</span>
+	        	</b>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td width="150" height="20">
 	            <p align="center"><b><span style="font-size:12pt;">&nbsp;</span></b></p>
 	        </td>
 	        <td width="450" height="20" align="center">

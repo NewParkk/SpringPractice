@@ -20,7 +20,7 @@ public class FirstInterceptor implements HandlerInterceptor {
 		System.out.println("Bean : " + handlerMethod.getBean());
 		System.out.println("ReturnType : " + handlerMethod.getReturnType());
 		
-		// false : 컨트롤러 실행X
+		// false : prehandle 내용을 컨트롤러 전달해서 실행하지 않음 
 		return true;
 	}
 

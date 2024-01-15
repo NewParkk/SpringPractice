@@ -1,0 +1,3 @@
+deptno : 77
+dname : File
+loc : insert
