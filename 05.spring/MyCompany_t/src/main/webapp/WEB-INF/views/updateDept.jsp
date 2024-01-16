@@ -8,13 +8,14 @@
 <meta charset="UTF-8">
 <title>Dept Update</title>
 <link href="/resources/css/layout.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
 <%@ include file="header.jsp" %>
 
 <!-- action, method -->
-<form action="/dept/${dept.deptno}" method="POST">
+<form action="/dept/${dept.deptno}" method="POST" enctype="multipart/form-data">
 	<!-- PUT -->
 	<input type="hidden" name="_method" value="PUT">
 	<table align="center" cellpadding="5" cellspacing="1" width="600" border="1">
@@ -66,6 +67,20 @@
 	        	</b>
 	        </td>
 	    </tr>
+	     <tr>
+	        <td width="150" height="20">
+	            <p align="center"><b><span style="font-size:9pt;">부서파일</span></b></p>
+	        </td>
+	        <td width="450" height="20" align="center">
+	        	<b>
+	        		<span id="dept-file" style="font-size:12pt;">
+	        			<a href="http://localhost:8080/download/file/${file.attachmentFileNo}">${file.attachmentOriginalFileName}</a>
+	        			<button id="file-delete-btn">X</button>
+	        		</span>
+	        		<input type="file" id="testFile" name="file" style="display: none;">
+	        	</b>
+	        </td>
+	    </tr>
 	    <tr>
 	        <td width="150" height="20">
 	            <p><b><span style="font-size:9pt;">&nbsp;</span></b></p>
@@ -89,6 +104,37 @@
 </div>
 
 <%@ include file="footer.jsp" %>
+
+<script type="text/javascript">
+	let deptFile = document.getElementById('dept-file');
+	let deleteFileBtn = document.getElementById('file-delete-btn');
+	deleteFileBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		// url : /file/{fileNo} (delete) + axios
+		axios.delete('http://localhost:8080/file/${file.attachmentFileNo}')
+				.then(response => {
+					console.log(response)
+					if(response.data === 'S000') {
+						//
+						deptFile.innerHTML = '';
+						
+						// 
+						/*
+						let newInput = document.createElement('input');
+						newInput.type = 'file';
+						newInput.name = 'file';
+						*/
+						let newInput = document.getElementById("testFile");
+						newInput.style = "display : block";
+						
+						deptFile.appendChild(newInput);
+					}
+
+				})
+				.catch(error => console.error(error));
+	})
+	
+</script>
 
 </body>
 </html>

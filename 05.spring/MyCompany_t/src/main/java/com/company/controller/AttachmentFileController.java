@@ -13,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.dto.AttachmentFile;
 import com.company.service.AttachmentFileService;
@@ -33,7 +35,7 @@ public class AttachmentFileController {
 		Resource resource = null;
 		try {
 			attachmentFile = fileService.getAttachmentFileByFileNo(fileNo);
-			System.out.println(attachmentFile);
+//			System.out.println(attachmentFile);
 			Path path = Paths.get(attachmentFile.getFilePath() + "\\" + attachmentFile.getAttachmentFileName());
 			resource = new InputStreamResource(Files.newInputStream(path));
 		} catch (Exception e) {
@@ -49,4 +51,38 @@ public class AttachmentFileController {
 		
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
+	
+//	JSON형식으로 주고받을시 data Mapping annotation
+	@ResponseBody
+	@DeleteMapping(value = "/file/{fileNo}")
+	public String deleteFileByFileNo(@PathVariable long fileNo) {
+		System.out.println("서비스진입");
+		System.out.println(fileNo);
+		// db, 로컬 서버 삭제 => true : return "성공" / "실패"
+		boolean result = false;
+		String resultCode = "";
+		
+		//result = fileService.deleteAttachmentFileByFileNo(fileNo);
+		result = true;
+		if (result) {
+			System.out.println("성공");
+			resultCode = "S000";
+		}else {
+			System.out.println("실패");
+			resultCode = "F000";
+		}
+		
+		return resultCode;
+	}
+	
+	// 비동기 = ModelAndView
+	// 화면 = String
+	
+	
+	
+	
+	
+	
+	
+	
 }

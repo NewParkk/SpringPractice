@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.company.dto.AttachmentFile;
@@ -81,5 +82,31 @@ public class AttachmentFileService {
 		attachmentFile = attachmentFileMapper.getAttachmentFileByFileNo(fileNo);
 		
 		return attachmentFile;
+	}
+	
+	// 함수 내 모든 작업이 완료될때만 정상리턴하는 annotation
+	@Transactional
+	public boolean deleteAttachmentFileByFileNo(long fileNo) {
+		System.out.println("contoller진입");
+		boolean result = false;
+		AttachmentFile file = null;
+		
+		file = getAttachmentFileByFileNo(fileNo);
+		
+		// 로컬 서버 파일 삭제
+		File serverFile = new File(file.getFilePath() + "\\" + file.getAttachmentFileName());
+		
+		boolean serverDeleteResult = serverFile.delete();
+		
+		System.out.println("serverDeleteResult : " + serverDeleteResult);
+		// db 삭제
+		int res = attachmentFileMapper.deleteAttachmentFileByFileNo(fileNo);
+		System.out.println("res" + res);
+		
+		if(serverDeleteResult && res != 0) {
+			result = true;
+		}
+		
+		return result;
 	}
 }

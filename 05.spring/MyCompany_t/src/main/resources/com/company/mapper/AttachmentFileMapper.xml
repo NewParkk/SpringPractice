@@ -51,6 +51,14 @@
 		WHERE attachment_file_no = #{fileNo}
 	</select>
 	
+	<delete id="deleteAttachmentFileByFileNo"
+			parameterType="_long">
+		DELETE
+		FROM attachment_file
+		WHERE attachment_file_no = ${fileNo}
+	</delete>		
+	
+	
 	
 	<!-- 변수명 사이 _ 같은거 써서 매칭 안되는거 매칭시키기 -->
 	<resultMap type="com.company.dto.AttachmentFile" id="attachmentFile">

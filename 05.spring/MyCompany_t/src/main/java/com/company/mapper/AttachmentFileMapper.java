@@ -9,5 +9,7 @@ public interface AttachmentFileMapper {
 	AttachmentFile getAttachmentFileByDeptno(int deptno);
 	
 	AttachmentFile getAttachmentFileByFileNo(long fileNo);
+
+	int deleteAttachmentFileByFileNo(long fileNo);
 	
 }

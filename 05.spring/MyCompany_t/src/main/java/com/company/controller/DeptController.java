@@ -112,7 +112,10 @@ public class DeptController {
 	public String updateDeptForm(@PathVariable int deptno, Model model) throws Exception {
 		
 		Dept dept = service.getDeptByDeptno(deptno);
+		AttachmentFile file = fileService.getAttachmentFileByDeptno(deptno);
 		model.addAttribute("dept", dept);
+		model.addAttribute("file", file);
+		
 		
 		return "updateDept";
 	}
