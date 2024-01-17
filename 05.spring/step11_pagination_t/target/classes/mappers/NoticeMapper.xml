@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="com.spring.pagination.mapper.NoticeMapper">
+
+	<!-- insertNotice -->
+	<insert id="insertNotice" parameterType="com.spring.pagination.dto.Notice">
+			INSERT INTO notice (no, user_id, user_name, title, content, hit) 
+			VALUES (#{no}, #{userId}, #{userName}, #{title}, #{content}, #{hit})
+	</insert>
+
+	<!-- getNoticeBySearchKeyword -->
+	
+	
+	
+ </mapper>
+ 

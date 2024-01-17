@@ -116,6 +116,10 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\multi\05.spring\step11_pagination_t"/>
+			<item value="C:\multi\05.spring\step08_schedule_t"/>
+			<item value="C:\multi\05.spring\step09_exception_t"/>
+			<item value="C:\multi\05.spring\step07_AOP1"/>
 			<item value="C:\multi\05.spring\MyCompany_t"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
@@ -123,14 +127,14 @@
 		</list>
 	</section>
 	<section name="org.eclipse.text.quicksearch.internal.ui.QuickSearchDialog.DIALOG_SETTINGS">
-		<item key="LAST_QUERY" value="upload"/>
+		<item key="LAST_QUERY" value="getAttachmentFile"/>
 		<item key="PATH_FILTER" value=""/>
 		<item key="CASE_SENSITIVE" value="true"/>
 		<item key="KEEP_OPEN" value="false"/>
 		<list key="COLUMN_WIDTHS">
 			<item value="40"/>
 			<item value="400"/>
-			<item value="101"/>
+			<item value="191"/>
 		</list>
 		<list key="SASH_WEIGHTS">
 			<item value="714"/>
@@ -138,7 +142,7 @@
 		</list>
 		<section name="DialogBoundsSettings">
 			<item key="DIALOG_HEIGHT" value="500"/>
-			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_WIDTH" value="690"/>
 			<item key="DIALOG_X_ORIGIN" value="656"/>
 			<item key="DIALOG_Y_ORIGIN" value="123"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

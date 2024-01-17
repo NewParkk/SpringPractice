@@ -1,0 +1,60 @@
+Quartz
+	- 스케줄러 구성을 위한 라이브러리
+	- 주기적으로 특정한 프로그램 실행시 활용
+	
+	- pom.xml
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+	- root-context.xml
+		<task:annotation-driven>
+	
+	- @EnableScheduling + @Component
+		@Scheduled(스케쥴) : 스케쥴 등록을 위한 어노테이션
+			cron에 대한 방법으로 스케쥴을 등록 후 사용 가능
+			
+			- 설명
+				* http://www.cronmaker.com/
+				* https://www.freeformatter.com/cron-expression-generator-quartz.html
+				필드명	위치	값의 허용 범위	허용된 특수문자
+				초(seconds)	1번	0 ~ 59	, - * /
+				분(minutes)	2번	0 ~ 59	, - * /
+				시(hours)	3번	0 ~ 23	, - * /
+				일(day)	4번	1 ~ 31	, - * ? / L W
+				월(month)	5번	1 ~ 12 or JAN ~ DEC	, - * /
+				요일(week)	6번	0 ~ 6 or SUN ~ SAT	, - * ? / L #
+				연도(year)	7번	empty or 1970 ~ 2099	, - * /
+
+				---
+				* - 모든 값
+				? - 특정한 값이 없음
+				- - 범위
+				, - 특별한 값
+				/ - 시작시간/단위, 0/5 : 0초부터 5초간격 실행
+
+			- 예
+				0/5 * * * * ?		5초마다 실행
+				0 0/5 * * * ?		5분마다 실행
+				0 11 11 ? * *		매일 오전 11시 11분에 실행
+				0 11 11 * * ? 2024	2024년 동안 매일 오전 11시 11분에 실행
+				0 * 15 * * ?		매일 오후 3시에 시작해서 매 분마다 실행하고 오후 3시 59분에 마지막 실행
+				0 0/5 15 * * ?		매일 오후 3시에 시작해서 5분마다 실행하고 오후 3시 55분에 마지막 실행
+				0 0/5 15,18 * * ?	매일 오후 3시, 6시에 시작해서 5분마다 실행하고 오후 3시 55분, 6시 55분에 마지막 실행
+				
+				

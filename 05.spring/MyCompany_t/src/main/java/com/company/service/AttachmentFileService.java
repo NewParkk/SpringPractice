@@ -68,7 +68,7 @@ public class AttachmentFileService {
 	}
 	
 	// 부서번호로 파일 출력
-	public AttachmentFile getAttachmentFileByDeptno(int deptno) {
+	public AttachmentFile getAttachmentFileByDeptno(int deptno) throws SQLException {
 		AttachmentFile attachmentFile = null;
 		
 		attachmentFile = attachmentFileMapper.getAttachmentFileByDeptno(deptno);
@@ -76,7 +76,7 @@ public class AttachmentFileService {
 		return attachmentFile;
 	}
 
-	public AttachmentFile getAttachmentFileByFileNo(long fileNo) {
+	public AttachmentFile getAttachmentFileByFileNo(long fileNo) throws SQLException {
 		AttachmentFile attachmentFile = null;
 		
 		attachmentFile = attachmentFileMapper.getAttachmentFileByFileNo(fileNo);
@@ -86,7 +86,7 @@ public class AttachmentFileService {
 	
 	// 함수 내 모든 작업이 완료될때만 정상리턴하는 annotation
 	@Transactional
-	public boolean deleteAttachmentFileByFileNo(long fileNo) {
+	public boolean deleteAttachmentFileByFileNo(long fileNo) throws SQLException {
 		System.out.println("contoller진입");
 		boolean result = false;
 		AttachmentFile file = null;

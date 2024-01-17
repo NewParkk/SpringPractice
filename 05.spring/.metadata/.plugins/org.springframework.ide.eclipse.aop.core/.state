@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="step04_state"/>
 <aop-project name="step01_DI"/>
-<aop-project name="MyCompany_t"/>
+<aop-project name="step08_schedule_t"/>
 <aop-project name="step03_mybatis"/>
-<aop-project name="step05_interceptor"/>
+<aop-project name="step09_exception_t"/>
 <aop-project name="step02_mvc"/>
+<aop-project name="step04_state"/>
+<aop-project name="step11_pagination_t"/>
+<aop-project name="MyCompany_t"/>
+<aop-project name="step07_AOP">
+<aspect-definition advice-class-name="com.spring.aop.AroundAspect" advice-method-name="aroundAspect(org.aspectj.lang.JoinPoint)" advice-type="AROUND" aspect-end-line-number="12" aspect-name="aroundAspect" aspect-start-line-number="12" factory-id="org.springframework.ide.eclipse.aop.core.annotationAspectDefinitionElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" pointcut-expression="execution(* com.spring.biz.BizCar.*(..))" proxy-target-class="false">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:step07_AOP|3:src/main/resources/spring-aop.xml|7:beans:8|8:bizCar:8" bean-file="/step07_AOP/src/main/resources/spring-aop.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" source="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.aop{AroundAspect.java[AroundAspect~aroundAspect~QJoinPoint;" source-start-line="15" target="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.biz{BizCar.java[BizCar~buyMoney~I" target-start-line="15"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:step07_AOP|3:src/main/resources/spring-aop.xml|7:beans:8|8:bizCar:8" bean-file="/step07_AOP/src/main/resources/spring-aop.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" source="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.aop{AroundAspect.java[AroundAspect~aroundAspect~QJoinPoint;" source-start-line="15" target="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.biz{BizCar.java[BizCar~buyReturn" target-start-line="20"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:step07_AOP|3:src/main/resources/spring-aop.xml|7:beans:8|8:bizCar:8" bean-file="/step07_AOP/src/main/resources/spring-aop.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" source="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.aop{AroundAspect.java[AroundAspect~aroundAspect~QJoinPoint;" source-start-line="15" target="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.biz{BizCar.java[BizCar~sellMoney~I" target-start-line="25"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:step07_AOP|3:src/main/resources/spring-aop.xml|7:beans:8|8:bizCar:8" bean-file="/step07_AOP/src/main/resources/spring-aop.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" source="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.aop{AroundAspect.java[AroundAspect~aroundAspect~QJoinPoint;" source-start-line="15" target="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.biz{BizCar.java[BizCar~buy" target-start-line="10"/>
+</aspect-definition>
+</aop-project>
+<aop-project name="step05_interceptor"/>
 <aop-project name="step00_intro"/>
 <aop-project name="step06_File"/>
 </aop-reference-model>

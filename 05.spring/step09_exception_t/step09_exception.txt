@@ -1,0 +1,36 @@
+[Spring Exception Handle]
+
+- 스프링은 기본적으로 HandlerExceptionResolver를 통해 예외를 처리함
+	- *** 기본 흐름 
+		1. ExceptionHandlerExceptionResolver
+		2. ResponseStatusExceptionResolver
+		3. DefaultHandlerExceptionResolver
+
+1. Web Application Level 예외처리
+	- web.xml
+		<error-page>
+	        <error-code>에러코드</error-code>
+	        <location>/WEB-INF/views/에러페이지.jsp 경로</location>
+	    </error-page>
+	
+		- 특정 예외만 처리할때
+		<exception-type>예외 처리클래스명</exception-type>
+	
+2. Spring Container 예외처리
+	- try ~ catch
+		- 일반 예외처리 가능
+		
+	- ExceptionHandlerExceptionResolver
+		- @ExceptionHandler({에외클래스, ...})
+			- Controller 단에서 예외를 처리하기 위함
+	
+		- @ControllerAdvice
+			- 전역 레벨에서 예외 처리
+	
+	- ResponseStatusExceptionResolver
+		@ResponseStatus(status명)
+		* https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+		
+		
+		
+		
