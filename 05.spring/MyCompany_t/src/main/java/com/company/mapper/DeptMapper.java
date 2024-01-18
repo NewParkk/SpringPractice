@@ -15,7 +15,7 @@ public interface DeptMapper {
 	public List<Dept> getAllDeptList();
 
 	// 객체 - Dept
-	public Dept getDeptByDeptno(int deptno);
+	public Dept getDeptByDeptno(int deptno) throws SQLException;
 	
 	// insert - Dept
 	public int insertDept(Dept dept) throws SQLException;

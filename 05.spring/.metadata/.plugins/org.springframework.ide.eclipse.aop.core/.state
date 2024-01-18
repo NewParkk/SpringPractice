@@ -16,6 +16,7 @@
 <aop-reference advice-type="AROUND" bean="1:BeansModel|2:step07_AOP|3:src/main/resources/spring-aop.xml|7:beans:8|8:bizCar:8" bean-file="/step07_AOP/src/main/resources/spring-aop.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" source="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.aop{AroundAspect.java[AroundAspect~aroundAspect~QJoinPoint;" source-start-line="15" target="=step07_AOP/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.spring.biz{BizCar.java[BizCar~buy" target-start-line="10"/>
 </aspect-definition>
 </aop-project>
+<aop-project name="MovieProject"/>
 <aop-project name="step05_interceptor"/>
 <aop-project name="step00_intro"/>
 <aop-project name="step06_File"/>

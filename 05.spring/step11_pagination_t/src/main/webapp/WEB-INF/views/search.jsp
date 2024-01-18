@@ -34,15 +34,15 @@
 	<div class="row justify-content-center">
 		<div class="col-6">
 			<ul class="list-group">
-				<c:if test="${true}">
-					<%-- <c:forEach var="" items=""> --%>
+				<c:if test="${not empty noticeList}">
+					<c:forEach var="notice" items="${noticeList}">
 						<li class="list-group-item d-flex justify-content-between align-items-start">
 							<div class="ms-2 me-auto">
-								<div class="fw-bold">title</div>
-								content
-							</div> <span class="badge bg-primary rounded-pill">hit</span>
+								<div class="fw-bold">${notice.title}</div>
+								${notice.content}
+							</div> <span class="badge bg-primary rounded-pill">${notice.hit}</span>
 						</li>
-					<%-- </c:forEach> --%>
+					</c:forEach>
 				</c:if>
 			</ul>
 		</div>

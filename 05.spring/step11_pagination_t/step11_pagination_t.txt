@@ -12,5 +12,54 @@
 				4) input에서 10 검색
 					http://localhost:8080/search/keyword?searchKeyword=10 요청
 				5) notice content에 10이 포함되어 있으면 모든 notice 출력
+	2. pagination
+		- 특정 페이지(!)에 원하는 데이터 개수(! 기본 : 10개)를 출력하는 기능
+		
+		- *** 기능 설계
+		
+			1) 버튼 클릭 전 / 후 필요한 데이터
+				- request
+					- 현재 페이지 번호(버튼 클릭 전 : pageNum 1 / 후 : 현재 pageNum)
+					- 페이지당 출력 데이터 개수(기본 : 10)
 				
-	
+				- response
+					- 화면 시작/종료 페이지 번호
+					- 화면 하단 출력할 페이지 개수(기본 : 10)
+					- 이전/다음 페이지 이동(페이지 10개 단위로 이전/다음 이동)
+					- 실제 마지막 페이지 번호
+					- 전체 페이지 개수
+					
+			2) DTO 설계
+				- PageRequest
+				- PageResponse
+		
+		- Practice Flow
+			1) 서버로 구동(프로젝트 path="/") 확인
+			2) http://localhost:8080/page 에서 페이지 확인
+				(현재페이지 1, 화면 하단 1 ~ 10 페이지 출력, 다음 버튼, 10개의 데이터 출력 확인)
+			3) 특정 페이지 클릭
+			4) http://localhost:8080/page?pageNum=특정페이지번호&amount=10 요청
+			5) 해당 페이지 결과 확인 및 검증
+			6) next / prev 클릭시 이전 또는 이후 10개 단위의 페이지 이동 등도 추후 검증
+			
+						
+	3. search + pagination
+		- 검색한 결과에 맞는 데이터 개수 만큼 출력 하는 기능
+		
+		- Practice Flow
+			1) 서버로 구동(프로젝트 path="/") 확인
+			2) http://localhost:8080/main 에서 페이지 확인
+				(현재페이지 1, 화면 하단 1 ~ 10 페이지 출력, 다음 버튼, 10개의 데이터 출력 확인)
+			3) 검색키워드 입력 후 서버에 데이터 요청
+			4) 검색키워드에 해당하는 데이터 개수 만큼 페이지네이션 확인
+			
+			- NoticeMapper.java
+				// search + pagination
+				public List<Notice> getNoticeBySearchWithPage(PageRequestDTO pageRequest);
+			
+			* 주의할 점
+				- 검색키워드로 결과를 받아온 후, 다른 페이지 이동시 검색 키워드의 결과 데이터가 유지가 잘 되고 있는가?
+					예) 10 검색 -> input에 이전 검색키워드 10 출력 및 출력 결과 데이터가 10과 관련 되어 유지되는지 확인
+					    : http://localhost:8080/main?searchKeyword=10&pageNum=1&amount=10
+				
+			- 검색키워드가 없을 경우에는 주소값을 어떻게 해결해야 하는가? 

@@ -12,6 +12,61 @@
 	</insert>
 
 	<!-- getNoticeBySearchKeyword -->
+	<!-- SELECT no, user_id, user_name, title, content, hit 
+		 FROM notice
+		 WHERE content LIKE '%10%'; -->
+	
+	<select id="getNoticeBySearchKeyword"
+			parameterType="string"
+			resultType="com.spring.pagination.dto.Notice">
+		
+		SELECT no, user_id AS userId, user_name AS userName, title, content, hit
+		FROM notice
+		<trim prefix="WHERE">
+			<if test="searchKeyword != null">
+				content LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getNoticeByPage"
+			parameterType="com.spring.pagination.dto.PageRequestDTO"
+			resultType="com.spring.pagination.dto.Notice">
+		<bind name="start" value="(pageNum-1)*amount"/>
+				
+		SELECT no, user_id AS userId, user_name AS userName, title, content, hit
+		FROM notice
+		LIMIT #{start}, #{amount}
+		
+	</select>
+	
+	<select id="getTotalCount"
+			parameterType="com.spring.pagination.dto.PageRequestDTO"
+			resultType="_int">
+		SELECT COUNT(no)
+		FROM notice
+		<trim prefix="WHERE">
+			<if test="searchKeyword != null">
+				content LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getNoticeBySearchWithPage"
+			parameterType="com.spring.pagination.dto.PageRequestDTO"
+			resultType="com.spring.pagination.dto.Notice">
+		<bind name="start" value="(pageNum-1)*amount"/>
+		
+		SELECT no, user_id AS userId, user_name AS userName, title, content, hit
+		FROM notice
+		<trim prefix="WHERE">
+			<if test="searchKeyword != null">
+				content LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</trim>
+		LIMIT #{start}, #{amount}
+	</select>
+	
 	
 	
 	

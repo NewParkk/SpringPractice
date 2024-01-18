@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spring.pagination.dto.Notice;
+import com.spring.pagination.dto.PageRequestDTO;
+import com.spring.pagination.dto.PageResponseDTO;
 import com.spring.pagination.mapper.NoticeMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -47,7 +49,60 @@ public class NoticeController {
 								Model model) {
 		
 		
+		List<Notice> noticeList = noticeMapper.getNoticeBySearchKeyword(searchKeyword);
+		
+		model.addAttribute("noticeList",noticeList);
+		
 		return "search";
 	}
 	
+//	@GetMapping("/page")
+//	public String basicPagination(PageRequestDTO pageRequest, 
+//									Model model) {
+//		System.out.println(pageRequest);
+//		
+//		List<Notice> noticeList = noticeMapper.getNoticeByPage(pageRequest);
+//		
+//		// "pageInfo" : pageResponse
+//		
+//		int totalCount = noticeMapper.getTotalCount();
+//		
+//		PageResponseDTO pageResponse = new PageResponseDTO().builder()
+//														.total(totalCount)
+//														.pageAmount(pageRequest.getAmount())
+//														.pageRequest(pageRequest)
+//														.build();
+//		
+////		System.out.println(pageResponse);
+//		
+//		model.addAttribute("noticeList",noticeList);
+//		model.addAttribute("pageInfo",pageResponse);
+//		
+//		
+//		
+//		return "pagination";
+//	}
+	
+	
+	@GetMapping(value = "/main")
+	public String searchWithPage(PageRequestDTO pageRequest,
+									Model model) {
+		System.out.println(pageRequest);
+		
+		List<Notice> noticeList = noticeMapper.getNoticeBySearchWithPage(pageRequest);
+		
+		int totalCount = noticeMapper.getTotalCount(pageRequest);
+		
+		PageResponseDTO pageResponse = new PageResponseDTO().builder()
+									.total(totalCount)
+									.pageAmount(pageRequest.getAmount())
+									.pageRequest(pageRequest)
+									.build();
+		
+		
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("pageInfo", pageResponse);
+		
+		return "main";
+	}
 }

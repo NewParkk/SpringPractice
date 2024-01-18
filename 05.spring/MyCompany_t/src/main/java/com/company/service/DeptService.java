@@ -21,7 +21,14 @@ public class DeptService {
 	}
 
 	// 객체
-	public Dept getDeptByDeptno(int deptno) throws Exception { 
+	public Dept getDeptByDeptno(int deptno) throws SQLException {
+		
+		Dept dept = mapper.getDeptByDeptno(deptno); 
+	
+		if (dept == null) {
+			throw new NullPointerException("해당 부서는 존재하지 않습니다.");
+		}
+		
 		return mapper.getDeptByDeptno(deptno); 
 	}
 	
