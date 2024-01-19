@@ -135,3 +135,5 @@
 		- TIMESTAMP : 날짜+시간
 		
 	@Transient : 특정 필드를 칼럼에 맵핑하지 않음
+	
+	@Enumerated(EnumType.STRING) : java의 enum타입을 해당 변수 명으로 활용하여 db에 문자열로 저장

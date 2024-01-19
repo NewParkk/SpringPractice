@@ -1,0 +1,40 @@
+
+[Spring Data JPA]
+	- 공통 인터페이스인 JpaRepository를 이용하여 구현 클래스를 활용하기 때문에 편리
+		* 참고 - https://miro.medium.com/v2/resize:fit:640/format:webp/1*MwlqUE-aWm_HTiuB_tsDFQ.png
+	- 기본적인 CRUD 제공
+	
+	- <S extends T> save(S entity)
+		새로운 엔터티는 저장, 이미 존재하는 엔터티는 병합
+	- void delete(T entity)
+		엔티티 하나 삭제, EntityManager.remove() 호출
+	- Optional<T> findById(ID id)
+		엔티티 하나 조회, EntityManager.find() 호출
+	- List<S> findAll(...)
+		모든 엔터티 조회(정렬(Sort) 또는 페이징(Pageable)조건을 파라미터 사용 가능)
+
+[Query Method]
+	* https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.query-methods.query-creation
+	- 객체와 관계형 데이터베이스의 데이터를 자동으로 매핑
+	- 스프링 데이터 JPA는 메소드 이름으로 쿼리 생성을 하는 쿼리 메소드 기능
+	  	- findBy ...
+	 	- First, Top
+	  	- And, Or
+	  	- After, Before, GreaterThan, LessThan, Between
+	  	- In
+	  	- StartingWith/EndingWith/Contains
+	  	- Sorting
+		- ...
+	
+	- 설정  JpaRepository<T, ID>
+		- Entity클래스명의 interface 구현 후 extends로 JpaRepository 생성	
+		
+	- 활용
+		- 위에서 소개한 쿼리 메소드의 방식으로 interface에 메소드 정의 후 호출
+		- 실행되는 쿼리 확인 필수
+		
+		@Query
+			- 실행 메소드에 실행할 정적 쿼리 JPQL로 작성하는 기능
+			- 구체적이고 명확한 쿼리 활용 가능
+			- 실행시 문법 오류 확인 가능
+			- 파라미터 바인딩 가능(변수명 활용)

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:annotation-config/>
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/scott?serverTimezone=Asia/Seoul"/>
+		<property name="username" value="SCOTT"/>
+		<property name="password" value="TIGER"/>
+	</bean>
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<tx:annotation-driven/>
+
+    <!-- hibernate -->
+     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+    
+    <!-- hibernate JPA구현 EntityManager -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+        <!-- Entity 위치 -->
+        <property name="packagesToScan" value="com.spring.jpa.entity"/> 
+        <!-- hibernate 상세 설정 -->
+        <property name="jpaProperties"> 
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop> 
+                <prop key="hibernate.show_sql">true</prop>                   
+                <prop key="hibernate.format_sql">true</prop>                 
+                <prop key="hibernate.use_sql_comments">true</prop>           
+                <prop key="hibernate.id.new_generator_mappings">true</prop>  
+                <prop key="hibernate.hbm2ddl.auto">none</prop>             
+            </props>
+        </property>
+    </bean>	
+    
+    <!-- JPA Scan -->
+    <jpa:repositories base-package="com.spring.jpa.repository" />
+    
+	<!-- JPA Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <context:component-scan base-package="com.spring.jpa.*" />
+</beans>

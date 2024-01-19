@@ -7,6 +7,7 @@
 <aop-project name="step02_mvc"/>
 <aop-project name="step04_state"/>
 <aop-project name="step11_pagination_t"/>
+<aop-project name="step14_JPA_App_t"/>
 <aop-project name="MyCompany_t"/>
 <aop-project name="step07_AOP">
 <aspect-definition advice-class-name="com.spring.aop.AroundAspect" advice-method-name="aroundAspect(org.aspectj.lang.JoinPoint)" advice-type="AROUND" aspect-end-line-number="12" aspect-name="aroundAspect" aspect-start-line-number="12" factory-id="org.springframework.ide.eclipse.aop.core.annotationAspectDefinitionElementFactory" file="/step07_AOP/src/main/resources/spring-aop.xml" pointcut-expression="execution(* com.spring.biz.BizCar.*(..))" proxy-target-class="false">

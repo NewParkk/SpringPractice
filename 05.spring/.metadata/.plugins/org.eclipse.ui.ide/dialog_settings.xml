@@ -116,6 +116,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\multi\05.spring\step14_JPA_App_t"/>
 			<item value="C:\multi\05.spring\step12_JPA_t"/>
 			<item value="C:\multi\05.spring\step11_pagination_t"/>
 			<item value="C:\multi\05.spring\step08_schedule_t"/>

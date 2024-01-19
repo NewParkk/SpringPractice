@@ -1,6 +1,7 @@
 package com.spring.jpa.entity;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.spring.jpa.enumtype.GradeType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-//@Entity
+@Entity
 public class Customer {
 	@Id
 	private String id;
@@ -30,8 +33,10 @@ public class Customer {
 	private String name;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "registration_date")
 	private Date registrationDate;
 	
-	private String grade;
+	@Enumerated(EnumType.STRING)
+	private GradeType grade;
 	
 }
